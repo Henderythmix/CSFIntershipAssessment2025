@@ -2,7 +2,7 @@ const express = require("express");
 const genius = require("./genius");
 const lyrics = require("./lyrics");
 const cors = require("cors");
-server = express();
+const server = express();
 
 server.use("/", express.static("./static"));
 
@@ -60,6 +60,10 @@ server.post("/API/POST/SearchSongs", async (req, res) => {
   await res.send(search);
 });
 
-server.listen(3000, () => {
-  console.log("Listening on port 3000");
-});
+//server.listen(process.env.PORT || 3000, () => {
+//  `Server listening on port ${process.env.PORT || 3000}`
+//});
+
+server.listen(process.env.PORT || 3000, () => console.log(`Server listening on port ${process.env.PORT || 3000}`));
+
+module.exports = server;
