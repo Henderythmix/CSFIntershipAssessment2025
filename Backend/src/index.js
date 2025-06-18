@@ -2,6 +2,7 @@ const express = require("express");
 const genius = require("./genius");
 const lyrics = require("./lyrics");
 const cors = require("cors");
+const serverless = require("serverless-http");
 const server = express();
 
 server.use("/", express.static("./static"));
@@ -64,6 +65,4 @@ server.post("/API/POST/SearchSongs", async (req, res) => {
 //  `Server listening on port ${process.env.PORT || 3000}`
 //});
 
-server.listen(process.env.PORT || 3000, () => console.log(`Server listening on port ${process.env.PORT || 3000}`));
-
-module.exports = server;
+module.exports = serverless(server);
